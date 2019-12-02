@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "730695569041",
+    "firebase_url": "https://car-e1.firebaseio.com",
+    "project_id": "car-e1",
+    "storage_bucket": "car-e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730695569041:android:8b1716c64188227a31f930",
+        "android_client_info": {
+          "package_name": "com.example.care_e"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730695569041-vd2437p9gfplqgqjla4nod5h21al91u2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.care_e",
+            "certificate_hash": "8681d33652b107225a166735eadef64601a42b4f"
+          }
+        },
+        {
+          "client_id": "730695569041-g5i8587umok0vtcovpsf1hbf0m88mh41.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDszxzJTkLwIcgpMarcz8uRPaq-kCG-ou8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730695569041-g5i8587umok0vtcovpsf1hbf0m88mh41.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
