@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TripRecord">
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/adamina"
+        android:text="Your Cost"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tripcost"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/amethysta"
+        android:text="$4.98"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/adamina"
+        android:text="Carbon Footprint"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/carbonfootprint"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/amethysta"
+        android:text="5 Tonne"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/bar"/>
+
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="90dp"
+        tools:context=".MapsActivity" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="590dp"
+        android:src="@drawable/bar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="595dp"
+        android:fontFamily="@font/adamina"
+        android:text="You Travelled"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="42sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:fontFamily="@font/amethysta"
+        android:text="60 miles"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="37sp"
+        android:textStyle="bold" />
+
+
+</FrameLayout>

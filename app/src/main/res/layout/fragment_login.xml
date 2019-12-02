@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/normalbackground"
+    tools:context=".Login">
+
+    <ImageView
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/carelogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Already have an account?"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/loginprompt"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="290dp"
+        android:background="@android:color/white"
+        android:src="@android:drawable/editbox_background"
+        android:text="Sign In"
+        android:textAlignment="center"
+        android:textColor="#37C900"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_____________________ Sign Up _____________________"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="390dp"
+        />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/user" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/lock"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="72dp"
+        android:hint="Enter your username"
+        android:background="@android:drawable/editbox_background_normal"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="72dp"
+        android:hint="Enter your password"
+        android:background="@android:drawable/editbox_background_normal"
+        />
+
+    <ImageButton
+        android:id="@+id/signupbutton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/loginarrow"
+        android:layout_marginTop="560dp"
+        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/loginbotton"
+        android:layout_gravity="bottom"
+        android:scaleType="fitXY"
+        />
+
+
+
+</FrameLayout>
