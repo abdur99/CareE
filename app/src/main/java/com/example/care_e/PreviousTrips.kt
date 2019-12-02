@@ -9,6 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class FriendSharing : Fragment() {
+class PreviousTrips : Fragment() {
 
 }
