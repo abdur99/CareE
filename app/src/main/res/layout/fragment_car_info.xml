@@ -24,12 +24,35 @@
             tools:src="@tools:sample/avatars" />
 
         <EditText
-            android:id="@+id/car_detail"
-            android:layout_width="315dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="132dp"
+            android:id="@+id/car_make"
+            android:layout_width="301dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="88dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carphoto" />
+
+        <EditText
+            android:id="@+id/car_model"
+            android:layout_width="301dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carphoto" />
+
+        <EditText
+            android:id="@+id/car_year"
+            android:layout_width="301dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="160dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/carphoto" />
 
