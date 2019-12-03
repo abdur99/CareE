@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/normalbackground"
-    tools:context=".Login">
+    tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="165dp"
@@ -17,14 +17,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="250dp"
         android:fontFamily="@font/nexa_bold"
-        android:layout_gravity="center_horizontal"
         android:text="Already have an account?"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:textSize="20sp"
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/loginprompt"
@@ -71,12 +70,11 @@
         android:id="@+id/username"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:fontFamily="@font/nexa_light"
         android:layout_marginLeft="72dp"
-        android:hint="Enter your username"
+        android:layout_marginTop="450dp"
         android:background="@android:drawable/editbox_background_normal"
-        />
+        android:fontFamily="@font/nexa_light"
+        android:hint="Enter your username" />
 
     <EditText
         android:id="@+id/password"
