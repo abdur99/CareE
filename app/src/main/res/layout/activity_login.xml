@@ -6,22 +6,22 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailText"
         style="@style/viewCustom"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress" />
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordText"
         style="@style/viewCustom"
-        android:layout_below="@id/email"
+        android:layout_below="@id/emailText"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
     <Button
         android:id="@+id/btn_login"
         style="@style/viewCustom"
-        android:layout_below="@id/password"
+        android:layout_below="@id/passwordText"
         android:background="@color/colorAccent"
         android:text="@string/login_title"
         android:textColor="@android:color/white"

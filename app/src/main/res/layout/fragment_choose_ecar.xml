@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     android:background="#13A001"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ChooseCar"
+    tools:context=".ChooseECar"
     >
 
     <Spinner
         android:id="@+id/electricYearSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:background="@color/dropDownBackground"
-        android:entries="@array/year_array"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/electricModelSpinner"
         app:layout_constraintEnd_toEndOf="@+id/electricModelSpinner"
@@ -25,8 +24,7 @@
         android:id="@+id/electricModelSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:background="@color/dropDownBackground"
-        android:entries="@array/model_array"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/electricMakeSpinner"
         app:layout_constraintEnd_toEndOf="@+id/electricMakeSpinner"
@@ -36,8 +34,7 @@
         android:id="@+id/electricMakeSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:background="@color/dropDownBackground"
-        android:entries="@array/make_array"
+
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="@+id/textView11" app:layout_constraintStart_toStartOf="@+id/textView11"
