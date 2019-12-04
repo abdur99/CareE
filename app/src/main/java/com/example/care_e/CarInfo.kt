@@ -10,7 +10,7 @@ import android.view.ViewGroup
 /**
  * A simple [Fragment] subclass.
  */
-class Car_info : Fragment() {
+class CarInfo : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -4,7 +4,7 @@ import android.location.Location
 import android.os.Looper
 import com.google.android.gms.location.*
 
-class GPSManager (internal var mapsActivity: TripRecord) : LocationCallback() {
+class GPSManager (internal var mapsActivity: MainActivity) : LocationCallback() {
     var fusedLocationProviderClient : FusedLocationProviderClient? = null
     var currentLocation : Location? = null
     var locationRequest : LocationRequest = LocationRequest.create()

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@+id/navigation_trip_record">
+
+    <fragment
+        android:id="@+id/navigation_trip_record"
+        android:name="com.example.care_e.TripRecord"
+        android:label="Trip Record"
+        tools:layout="@layout/fragment_trip_record" />
+
+    <fragment
+        android:id="@+id/navigation_car_info"
+        android:name="com.example.care_e.CarInfo"
+        android:label="Car Info"
+        tools:layout="@layout/fragment_car_info" />
+
+    <fragment
+        android:id="@+id/navigation_previous_trips"
+        android:name="com.example.care_e.PreviousTrips"
+        android:label="Previous Trips"
+        tools:layout="@layout/fragment_choose_car" />
+</navigation>
