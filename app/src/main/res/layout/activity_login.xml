@@ -1,55 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fancybackground"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/emailText"
-        style="@style/viewCustom"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
-    <EditText
-        android:id="@+id/passwordText"
-        style="@style/viewCustom"
-        android:layout_below="@id/emailText"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-    <Button
-        android:id="@+id/btn_login"
-        style="@style/viewCustom"
-        android:layout_below="@id/passwordText"
-        android:background="@color/colorAccent"
-        android:text="@string/login_title"
+
+    <ImageView
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/carelogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="230dp"
+        android:fontFamily="@font/nexa_bold"
+        android:text="Don't have an account yet?"
         android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_register_account"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="260dp"
+        android:background="@android:color/white"
+        android:src="@android:drawable/editbox_background"
+        android:text="Sign Up"
+        android:fontFamily="@font/nexa_bold"
+        android:textAlignment="center"
+        android:textColor="#37C900"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="330dp"
+        android:fontFamily="@font/nexa_bold"
+        android:text="Don't remember your password?"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/forgot_password"
-        style="@style/viewCustom"
-        android:layout_below="@id/btn_login"
-        android:background="@color/colorAccent"
-        android:text="Forgot Password?"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="345dp"
+        android:text="Click Here"
+        android:background="@null"
+        android:fontFamily="@font/nexa_bold"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_____________________ Sign In _____________________"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
-<!--    <TextView-->
-<!--        android:id="@+id/tv_forgot_password"-->
-<!--        style="@style/viewCustom"-->
-<!--        android:layout_below="@id/btn_login"-->
-<!--        android:clickable="true"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        android:text="Forgot Password?"-->
-<!--        android:textSize="20sp" />-->
-    <Button
-        android:id="@+id/btn_register_account"
-        style="@style/viewCustom"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:text="@string/create_act"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-</RelativeLayout>
+        android:layout_marginTop="430dp"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/user" />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="540dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/lock"
+        />
+
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="490dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fontFamily="@font/nexa_light"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="540dp"
+        android:layout_marginLeft="72dp"
+        android:fontFamily="@font/nexa_light"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:background="@android:drawable/editbox_background_normal"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_login"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/loginarrow"
+        android:layout_marginTop="600dp"
+        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        />
+
+</FrameLayout>

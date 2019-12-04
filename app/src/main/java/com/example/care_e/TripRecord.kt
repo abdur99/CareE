@@ -4,8 +4,12 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -15,17 +19,15 @@ import com.google.android.gms.maps.model.Marker
 import kotlin.system.exitProcess
 
 
-class TripRecord : FragmentActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    override fun onMarkerClick(p0: Marker?) = false
+class TripRecord : Fragment() {
 
-    private lateinit var mMap: GoogleMap
-    lateinit var gpsManager : GPSManager
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_trip_record)
-
-        gpsManager = GPSManager(this)
+        return inflater.inflate(R.layout.fragment_trip_record, container, false)
     }
 
     /**
@@ -37,57 +39,5 @@ class TripRecord : FragmentActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCli
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-        if (!checkPermission()) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                100
-            )
-        } else {
-            gpsManager.register()
-        }
-    }
-
-    fun checkPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    fun updateCurrentLocation(location : Location?){
-        if(location != null){
-            var latLng = LatLng(location.latitude, location.longitude)
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f)) // 2-21 levels of zoom
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-            exitProcess(0)
-        } else {
-            gpsManager.register()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        gpsManager.unregister()
-    }
-
-    override fun onResume(){
-        super.onResume()
-        if(checkPermission() && ::mMap.isInitialized){
-            gpsManager.register()
-        }
-    }
 }
 
