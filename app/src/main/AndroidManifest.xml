@@ -70,10 +70,13 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/AIzaSyCO69geWusGoI2PegIYdn6aLO7RK7Dc5CA" />
+            android:value="@string/google_maps_key" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
 </manifest>

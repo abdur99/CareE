@@ -11,6 +11,9 @@
     <string name="login_title">Login</string>
     <string name="create_act">Create Account</string>
     <string name="send_password_reset_email">Send Password Reset Email</string>
+    <string name="on_marker_drag">onMarkerDrag.  Current Position: (%1$f, %2$f)</string>
+    <string name="on_marker_drag_start">Started dragging marker</string>
+    <string name="on_marker_drag_end">Marker stopped dragging</string>
 
 
 </resources>

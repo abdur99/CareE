@@ -63,16 +63,38 @@
         android:layout_marginTop="80dp"
         android:src="@drawable/bar"/>
 
+    <EditText
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="35dp"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/searchloc"
+        android:layout_weight="0.5"
+        android:inputType="textPersonName"
+        android:hint="Search Destination" />
 
+    <Button
+        android:id="@+id/searchbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="285dp"
+        android:layout_marginTop="95dp"
+        android:background="#2A8D05"
+        android:fontFamily="@font/adamina"
+        android:text="Search"
+        android:onClick="searchLocation"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="90dp"
-        tools:context=".MapsActivity" />
+        android:layout_height="450dp"
+        android:layout_marginTop="140dp"
+        />
 
     <ImageView
         android:layout_width="match_parent"
@@ -94,11 +116,12 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="650dp"
         android:fontFamily="@font/nexa_bold"
-        android:text="60 miles"
+        android:text="0 Meters"
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="37sp"
