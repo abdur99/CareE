@@ -147,6 +147,43 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                 if(make == "Ferrari"){
                     car_image.setImageResource(R.drawable.ferrari488)
                 }
+                if(make == "Acura"){
+                    car_image.setImageResource(R.drawable.acura_rlx)
+                }
+                if(make == "Audi"){
+                    car_image.setImageResource(R.drawable.audir8)
+                }
+                if(make == "Aston Martin"){
+                    car_image.setImageResource(R.drawable.astinmartinvintage)
+                }
+                if(make == "Bentley"){
+                    car_image.setImageResource(R.drawable.bentlybentyga)
+                }
+                if(make == "BMW"){
+                    car_image.setImageResource(R.drawable.bmw750i)
+                }
+                if(make == "Chevy"){
+                    car_image.setImageResource(R.drawable.chovette)
+                }
+                if(make == "Chrysler"){
+                    car_image.setImageResource(R.drawable.pacifica)
+                }
+                if(make == "Dodge"){
+                    car_image.setImageResource(R.drawable.charger)
+                }
+                if(make == "FIAT"){
+                    car_image.setImageResource(R.drawable.i500l)
+                }
+                if(make == "Ford"){
+                    car_image.setImageResource(R.drawable.mustang)
+                }
+                if(make == "GMC"){
+                    car_image.setImageResource(R.drawable.sierra)
+                }
+                if(make == "Honda"){
+                    car_image.setImageResource(R.drawable.civic)
+                }
+               
                 modelAdapter.clear()
                 yearAdapter.clear()
 
@@ -170,6 +207,9 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
                 val model = makeAdapter.getItem(pos)
 
+
+
+                    // model
                 yearAdapter.clear()
 
                 years = HashSet(0)
