@@ -27,6 +27,9 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
     internal lateinit var makeAdapter: ArrayAdapter<String>
     internal lateinit var modelAdapter: ArrayAdapter<String>
     internal lateinit var yearAdapter: ArrayAdapter<String>
+    var firstname : String? = ""
+    var lastname : String? = ""
+    var email : String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,10 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
     ): View? {
 
         super.onCreateView(inflater, container, savedInstanceState)
+
+        if ((arguments?.getString("FirstName")) != null) { firstname = arguments?.getString("FirstName").toString() }
+        if ((arguments?.getString("LastName")) != null) { lastname = arguments?.getString("LastName").toString() }
+        if ((arguments?.getString("Email")) != null) { email = arguments?.getString("Email").toString() }
 
 
         var choosecarfrag = inflater.inflate(R.layout.fragment_choose_car, container, false)
@@ -104,11 +111,14 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
             }
             Log.e("VROOOOOM", theOne.toString())
 
-            val carBundle = Bundle()
+            var carBundle = Bundle()
             carBundle.putString("make", theOne.make)
             carBundle.putString("model", theOne.model)
             carBundle.putInt("year", theOne.year)
             carBundle.putInt("mpg", theOne.mpg)
+            carBundle.putString("FirstName", firstname)
+            carBundle.putString("LastName", lastname)
+            carBundle.putString("Email", email)
 
             Log.e("carmake", theOne.make!!)
             findNavController().navigate(R.id.action_navigation_choose_car_to_chooseECar, carBundle)
