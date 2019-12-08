@@ -36,6 +36,7 @@
             app:destination="@id/chooseECar" />
     </fragment>
 
+
     <fragment
         android:id="@+id/homeScreen"
         android:name="com.example.care_e.HomeScreen"

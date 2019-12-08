@@ -92,12 +92,12 @@
         android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/car_image"
         android:layout_width="210dp"
         android:layout_height="137dp"
-        android:layout_marginTop="50dp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/carelogo"
-        />
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/carelogo" />
 
     <Button
         android:id="@+id/sbutton"
