@@ -162,15 +162,15 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         //////////////////////////////
         //Data View
 
-        val gasCar = Car(mParam1!!.getString("make")!!,
-            mParam1!!.getString("model")!!,
-            mParam1!!.getInt("year"),
-            mParam1!!.getInt("mpg"))
-        val eCar = ElectricCar(mParam1!!.getString("eMake")!!,
-            mParam1!!.getString("eModel")!!,
-            mParam1!!.getInt("eYear"),
-            mParam1!!.getInt("empg"),
-            mParam1!!.getInt("price"))
+//        val gasCar = Car(mParam1!!.getString("make")!!,
+//            mParam1!!.getString("model")!!,
+//            mParam1!!.getInt("year"),
+//            mParam1!!.getInt("mpg"))
+//        val eCar = ElectricCar(mParam1!!.getString("eMake")!!,
+//            mParam1!!.getString("eModel")!!,
+//            mParam1!!.getInt("eYear"),
+//            mParam1!!.getInt("empg"),
+//            mParam1!!.getInt("price"))
 
         //////////////////////////////
 

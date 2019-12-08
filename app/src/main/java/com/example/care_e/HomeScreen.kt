@@ -1,15 +1,12 @@
 package com.example.care_e
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import java.util.*
 
@@ -55,9 +52,9 @@ class HomeScreen : Fragment() {
             findNavController().navigate(R.id.action_global_navigation_car_info)
         }
 
-        homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {
-            findNavController().navigate(R.id.action_global_information)
-        }
+//        homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {
+//            findNavController().navigate(R.id.action_global_information)
+//        }
 
         //set the string being displayed by the TextView to the greeting
         //message for the friend
