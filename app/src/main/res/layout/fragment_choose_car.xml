@@ -1,48 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/normalbackground"
-    tools:context=".ChooseCar">
+    android:background="#13A001"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ChooseCar"
+    >
 
-    <ImageView
-        android:layout_width="165dp"
-        android:layout_height="165dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/carelogo" />
+    <Spinner
+        android:id="@+id/YearSpinner"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+
+
+        android:layout_marginBottom="8dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/sbutton"
+        app:layout_constraintEnd_toEndOf="@+id/ModelSpinner"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/electricModelSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/electricModelSpinner" />
+
+    <Spinner
+        android:id="@+id/ModelSpinner"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/MakeSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/MakeSpinner"
+        app:layout_constraintStart_toStartOf="@+id/MakeSpinner" app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/YearSpinner"/>
+    <Spinner
+        android:id="@+id/MakeSpinner"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="@+id/textView11" app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@+id/ModelSpinner"/>
 
     <TextView
+        android:id="@+id/textView11"
+        android:layout_width="167dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="116dp"
+        android:fontFamily="@font/font_nexa"
+        android:text="Electric Vehicles"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:text="your car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Your Car"
-        android:fontFamily="@font/nexa_bold"
-
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:id="@+id/textView2" android:textColor="#ffffff"
         android:textSize="36sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="250dp"
-        />
+        android:fontFamily="@font/nexa_light"
+        app:layout_constraintStart_toStartOf="@+id/imageView4" app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.507"
+        android:layout_marginTop="48dp" app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageButton
-        android:id="@+id/infobutton"
-        android:layout_width="70dp"
-        android:scaleType="fitXY"
-        android:layout_height="70dp"
-        android:layout_marginTop="0dp"
-        android:layout_gravity="right"
-        android:background="@null"
-        android:src="@android:drawable/ic_menu_info_details" />
-    
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/makespinner"
-        android:background="@android:color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="350dp"
-        />
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="210dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/carelogo"
+        tools:srcCompat="@drawable/carelogo" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/sbutton"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="88dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/nexa_light"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/YearSpinner"
+        app:layout_constraintStart_toStartOf="@+id/YearSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
