@@ -43,6 +43,7 @@ import android.os.Build
 import android.widget.Button
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -59,6 +60,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, LocationListener,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    lateinit var CarEViewModel : ViewModel
+
     internal lateinit var mLastLocation: Location
     internal var mCurrLocationMarker: Marker? = null
     internal var mGoogleApiClient: GoogleApiClient? = null
@@ -66,10 +69,12 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
 
 
     private var count2 : Int = 0
+    lateinit var destmarker : Marker
 
     override fun onMapLongClick(p0: LatLng) {
         if (count2 == 0) {
-            mMap.addMarker(MarkerOptions().position(p0).title("Destination")).isDraggable = true
+            CarEViewModel.destinationMarker.value = mMap.addMarker(MarkerOptions().position(p0).title("Destination"))
+            CarEViewModel.destinationMarker.value!!.isDraggable = true
             val URL = getDirectionURL(p0, latLng)
             Log.d("GoogleMap", "URL : $URL")
             GetDirection(URL).execute()
@@ -105,6 +110,13 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         mMap.setOnMapLongClickListener {
             onMapLongClick(it)
         }
+
+        if (CarEViewModel.destinationMarker.value != null) {
+            mMap.addMarker(MarkerOptions().position(CarEViewModel.destinationMarker.value!!.position)).isDraggable = true
+            val URL = getDirectionURL(CarEViewModel.destinationMarker.value!!.position, CarEViewModel.currLocation.value!!)
+            Log.d("GoogleMap", "URL : $URL")
+            GetDirection(URL).execute()
+        }
         SearchButton.setOnClickListener{
             findNavController().navigate(R.id.action_global_navigation_trip_record)
         }
@@ -114,6 +126,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     fun updateCurrentLocation(location : Location?){
         if(location != null){
             latLng = LatLng(location.latitude, location.longitude)
+            CarEViewModel.currLocation.value = latLng
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         }
     }
@@ -138,6 +151,10 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        CarEViewModel = activity?.run{
+            ViewModelProviders.of(this).get(ViewModel::class.java)
+        }?: throw Exception("Activity Invalid")
         // Inflate the layout for this fragment
 
         var tripview = inflater.inflate(R.layout.fragment_trip_record, container, false)

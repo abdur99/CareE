@@ -1,4 +1,12 @@
 package com.example.care_e
 
-class ViewModel {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+
+class ViewModel (application: Application) : AndroidViewModel(application) {
+    var destinationMarker = MutableLiveData<Marker>()
+    var currLocation = MutableLiveData<LatLng>()
 }
