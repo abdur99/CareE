@@ -44,6 +44,24 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, LocationListener,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    var make : String? = ""
+    var model : String? = ""
+    var year : Int? = 0
+    var mpg : Int? = 0
+    var price: Int? = 0
+
+    var emake : String? = ""
+    var emodel : String? = ""
+    var eyear : Int? = 0
+    var empg : Int? = 0
+
+    var firstname : String? = ""
+    var lastname : String? = ""
+    var email : String? = ""
+
+    private lateinit var costText: TextView
+    private lateinit var emissionText : TextView
+
    //////////////////////
     //DataVisualization
 
@@ -63,6 +81,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
 
 
     private var count2 : Int = 0
+    private var cost : Double = 0.0
+    private var co2emission : Double = 0.0
     lateinit var destmarker : Marker
 
     override fun onMapLongClick(p0: LatLng) {
@@ -74,6 +94,14 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             GetDirection(URL).execute()
             count2++
             topText.text = (distanceCalculator(latLng, p0).toString())
+            costText.text = (BigDecimal(cost).setScale(3, RoundingMode.HALF_EVEN)).toString()
+            var co2 = ((-8.725*mpg!!)+749.5)
+            if (co2 >1000 ) {
+                emissionText.text = (BigDecimal(co2 / 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + "kilograms"
+            }
+            else {
+                emissionText.text = (BigDecimal(co2 / 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + "grams"
+            }
         }
         else {
             Toast.makeText(activity, "You have already picked a destination", Toast.LENGTH_SHORT).show()
@@ -144,6 +172,21 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         savedInstanceState: Bundle?
     ): View? {
 
+        if ((arguments?.getString("Make")) != null) { make = arguments?.getString("Make").toString() }
+        if ((arguments?.getString("Model")) != null) { model = arguments?.getString("Model").toString() }
+        if ((arguments?.getInt("Year")) != null) { year = arguments?.getInt("Year") }
+        if ((arguments?.getInt("mpg")) != null) { mpg = arguments?.getInt("mpg") }
+
+        if ((arguments?.getString("eMake")) != null) { emake = arguments?.getString("eMake").toString() }
+        if ((arguments?.getString("eModel")) != null) { emodel = arguments?.getString("eModel").toString() }
+        if ((arguments?.getInt("eYear")) != null) { eyear = arguments?.getInt("eYear") }
+        if ((arguments?.getInt("empg")) != null) { empg = arguments?.getInt("empg") }
+        if ((arguments?.getInt("price")) != null) { price = arguments?.getInt("price") }
+
+        if ((arguments?.getString("FirstName")) != null) { firstname = arguments?.getString("FirstName").toString() }
+        if ((arguments?.getString("LastName")) != null) { lastname = arguments?.getString("LastName").toString() }
+        if ((arguments?.getString("Email")) != null) { email = arguments?.getString("Email").toString() }
+
 
         CarEViewModel = activity?.run{
             ViewModelProviders.of(this).get(ViewModel::class.java)
@@ -159,6 +202,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         SearchButton = tripview.findViewById(R.id.searchbtn)
 
         topText = tripview.findViewById(R.id.distance)
+        costText = tripview.findViewById(R.id.tripcost)
+        emissionText = tripview.findViewById(R.id.carbonfootprint)
         //////////////////////////////
         //Data View
 
@@ -294,6 +339,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
+        cost = dist / (mpg!!*1.6)
         if (dist < 1) {
             return (BigDecimal(dist * 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + " Meters"
         }
