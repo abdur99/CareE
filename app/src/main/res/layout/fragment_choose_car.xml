@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/greenback"
+    android:background="@drawable/greenbackwithdots"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ChooseCar"
     >
@@ -107,7 +107,7 @@
         android:layout_marginTop="600dp"
         android:background="#FCFCFC"
         android:fontFamily="@font/nexa_light"
-        android:text="Done"
+        android:text="Next"
         android:textAllCaps="false"
         android:textColor="#0B8B03"
         android:textSize="24sp"

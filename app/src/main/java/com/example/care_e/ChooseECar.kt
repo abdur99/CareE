@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import java.io.IOException
 import java.util.*
 
@@ -108,10 +109,7 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
             ecarBundle.putInt("price", theTwo.pricePoint)
 
             Log.e("carmake", theTwo.make!!)
-            val goToMain = Intent(mContext, MainActivity::class.java)
-
-            goToMain.putExtra("Cars", ecarBundle)
-            startActivity(goToMain)
+            findNavController().navigate(R.id.action_chooseECar_to_homeScreen, ecarBundle)
         }
 
         // Inflate the layout for this fragment

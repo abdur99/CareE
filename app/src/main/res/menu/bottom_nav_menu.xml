@@ -16,4 +16,10 @@
         android:icon="@drawable/socialbottom"
         android:title="Previous Trips" />
 
+    <item
+        android:id="@+id/homeScreen"
+        android:icon="@drawable/homeicon"
+        android:title="Your Home" />
+
+
 </menu>

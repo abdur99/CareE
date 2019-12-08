@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import java.io.IOException
 import java.util.*
 
@@ -111,10 +112,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
             carBundle.putInt("mpg", theOne.mpg)
 
             Log.e("carmake", theOne.make!!)
-            val goToMain = Intent(mContext, MainActivity::class.java)
-
-            goToMain.putExtra("Cars", carBundle)
-            startActivity(goToMain)
+            findNavController().navigate(R.id.action_navigation_choose_car_to_chooseECar, carBundle)
         }
 
         // Inflate the layout for this fragment

@@ -19,33 +19,7 @@ class PreviousTrips : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        var homeview = inflater.inflate(R.layout.fragment_home_screen, container, false)
-
-        var GreetingMessage = homeview.findViewById(R.id.GreetingMessage) as TextView
-
-        //Get the time of day
-        val date = Date()
-        val cal = Calendar.getInstance()
-        cal.time = date
-        val hour = cal.get(Calendar.HOUR_OF_DAY)
-
-        //Set greeting
-        var greeting: String? = null
-        if (hour >= 12 && hour < 17) {
-            greeting = "Good Afternoon"
-        } else if (hour >= 17 && hour < 21) {
-            greeting = "Good Evening"
-        } else if ((hour >= 21 && hour < 24) || (hour >= 0 && hour <= 5)) {
-            greeting = "Good Night"
-        } else {
-            greeting = "Good Morning"
-        }
-
-        //set the string being displayed by the TextView to the greeting
-        //message for the friend
-        GreetingMessage.setText("$greeting!")
-
-        return homeview
+        return inflater.inflate(R.layout.fragment_previous_trips, container, false)
     }
 
 }
