@@ -1,7 +1,6 @@
 package com.example.care_e
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -181,7 +180,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                     car_image.setImageResource(R.drawable.sierra)
                 }
                 if(make == "Honda"){
-                    car_image.setImageResource(R.drawable.civic)
+                    car_image.setImageResource(R.drawable.accord)
                 }
                
                 modelAdapter.clear()

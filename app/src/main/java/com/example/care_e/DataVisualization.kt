@@ -14,7 +14,7 @@ import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM1 = "allinfobundle"
 private const val ARG_PARAM2 = "param2"
 
 /**
@@ -28,14 +28,14 @@ private const val ARG_PARAM2 = "param2"
 class DataVisualization : Fragment() {
     // TODO: Rename and change types of parameters
     private var mParam1: Bundle? = null
-    private var mParam2: Bundle? = null
+   // private var mParam2: Bundle? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             mParam1 = it.getBundle(ARG_PARAM1)
-            mParam2 = it.getBundle(ARG_PARAM2)
+          //  mParam2 = it.getBundle(ARG_PARAM2)
         }
     }
 
@@ -52,11 +52,11 @@ class DataVisualization : Fragment() {
             mParam1!!.getString("model")!!,
             mParam1!!.getInt("year"),
             mParam1!!.getInt("mpg"))
-        val eCar = ElectricCar(mParam2!!.getString("eMake")!!,
-            mParam2!!.getString("eModel")!!,
-            mParam2!!.getInt("eYear"),
-            mParam2!!.getInt("empg"),
-            mParam2!!.getInt("price"))
+        val eCar = ElectricCar(mParam1!!.getString("eMake")!!,
+            mParam1!!.getString("eModel")!!,
+            mParam1!!.getInt("eYear"),
+            mParam1!!.getInt("empg"),
+            mParam1!!.getInt("price"))
 
         val subtitle = inf.findViewById<View>(R.id.subtext_car) as TextView
 
