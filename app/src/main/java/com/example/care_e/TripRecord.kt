@@ -29,8 +29,24 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
-import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.Request
+import androidx.navigation.findNavController
+import kotlinx.android.synthetic.main.fragment_trip_record.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import kotlin.system.exitProcess
+import android.location.Address
+import android.location.Geocoder
+import android.os.Build
+import android.widget.Button
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import android.widget.EditText
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.location.LocationListener
+import com.google.android.gms.location.LocationRequest
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -63,6 +79,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     }
 
 
+
+
     private lateinit var topText: TextView
 
 
@@ -85,21 +103,15 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             onMapLongClick(it)
         }
         SearchButton.setOnClickListener{
-            searchLocation(it)
+            findNavController().navigate(R.id.action_global_navigation_trip_record)
         }
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
     }
-
-    var count : Int = 0
 
     fun updateCurrentLocation(location : Location?){
         if(location != null){
             latLng = LatLng(location.latitude, location.longitude)
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-
-            if (count == 0) {
-                mMap.addMarker(MarkerOptions().position(latLng).title("My Location")) // 2-21 levels of zoom
-            }
         }
     }
 
@@ -111,8 +123,12 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        gpsManager = GPSManager(this)
-        gpsManager.register()
+        val mapFragment = childFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)
+
+        //gpsManager = GPSManager(this)
+        //gpsManager.register()
     }
 
     override fun onCreateView(
@@ -125,6 +141,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        //gpsManager = GPSManager(this)
+        //gpsManager.register()
         SearchButton = tripview.findViewById(R.id.searchbtn)
 
         topText = tripview.findViewById(R.id.distance)
@@ -144,7 +162,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
      */
 
     fun getDirectionURL(origin:LatLng,dest:LatLng) : String{
-        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&key=AIzaSyCO69geWusGoI2PegIYdn6aLO7RK7Dc5CA"
+        return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&key=AIzaSyABlLiEzEm8wMshR2JRNKcq995t8NMEiZw"
     }
 
     private inner class GetDirection(val url : String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
@@ -344,5 +362,15 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             Toast.makeText(activity, address.latitude.toString() + " " + address.longitude, Toast.LENGTH_LONG).show()
         }
     }
-}
 
+    override fun onPause() {
+        super.onPause()
+        //gpsManager.unregister()
+    }
+
+    override fun onResume(){
+        super.onResume()
+        //gpsManager.register()
+    }
+
+}
