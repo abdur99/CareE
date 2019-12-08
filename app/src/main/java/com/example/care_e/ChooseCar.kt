@@ -137,7 +137,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
                 val make = makeAdapter.getItem(pos)
                 if(make == "Ferrari"){
-                    imageView4.setImageResource(R.drawable.ferrari488)
+                    car_image.setImageResource(R.drawable.ferrari488)
                 }
                 modelAdapter.clear()
                 yearAdapter.clear()
