@@ -118,7 +118,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         }
 
         // Inflate the layout for this fragment
-        return choosecarfrag
+        return  choosecarfrag
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
