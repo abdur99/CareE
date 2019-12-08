@@ -10,36 +10,36 @@
     >
 
     <Spinner
-        android:id="@+id/electricYearSpinner"
+        android:id="@+id/eYearSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
 
 
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/electricModelSpinner"
-        app:layout_constraintEnd_toEndOf="@+id/electricModelSpinner"
-        app:layout_constraintStart_toStartOf="@+id/electricModelSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/eModelSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/eModelSpinner"
+        app:layout_constraintStart_toStartOf="@+id/eModelSpinner"
         app:layout_constraintHorizontal_bias="0.5" android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/sbutton"/>
+        app:layout_constraintBottom_toTopOf="@+id/esbutton"/>
     <Spinner
-        android:id="@+id/electricModelSpinner"
+        android:id="@+id/eModelSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
 
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/electricMakeSpinner"
-        app:layout_constraintEnd_toEndOf="@+id/electricMakeSpinner"
-        app:layout_constraintStart_toStartOf="@+id/electricMakeSpinner" app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintBottom_toTopOf="@+id/electricYearSpinner"/>
+        app:layout_constraintTop_toBottomOf="@+id/eMakeSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/eMakeSpinner"
+        app:layout_constraintStart_toStartOf="@+id/eMakeSpinner" app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/eYearSpinner"/>
     <Spinner
-        android:id="@+id/electricMakeSpinner"
+        android:id="@+id/eMakeSpinner"
         android:layout_width="170dp"
         android:layout_height="40dp"
 
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="@+id/textView11" app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@+id/electricModelSpinner"/>
+        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toTopOf="@+id/eModelSpinner"/>
 
     <TextView
         android:id="@+id/textView11"
@@ -84,7 +84,7 @@
         tools:srcCompat="@drawable/carelogo" />
 
     <Button
-        android:id="@+id/sbutton"
+        android:id="@+id/esbutton"
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginBottom="88dp"
@@ -96,8 +96,8 @@
         android:textSize="24sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/electricYearSpinner"
-        app:layout_constraintStart_toStartOf="@+id/electricYearSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/eYearSpinner"
+        app:layout_constraintStart_toStartOf="@+id/eYearSpinner"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:layout_constraintVertical_bias="1.0" />
 
