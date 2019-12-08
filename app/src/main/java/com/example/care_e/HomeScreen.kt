@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import java.util.*
 
 class HomeScreen : Fragment() {
@@ -38,6 +41,22 @@ class HomeScreen : Fragment() {
             greeting = "Good Night"
         } else {
             greeting = "Good Morning"
+        }
+
+        homeview.findViewById<ImageButton>(R.id.tripinfobutton).setOnClickListener {
+            findNavController().navigate(R.id.action_global_navigation_trip_record)
+        }
+
+        homeview.findViewById<ImageButton>(R.id.previoustripsbutton).setOnClickListener {
+            findNavController().navigate(R.id.action_global_navigation_previous_trips)
+        }
+
+        homeview.findViewById<ImageButton>(R.id.carinfobutton).setOnClickListener {
+            findNavController().navigate(R.id.action_global_navigation_car_info)
+        }
+
+        homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {
+            findNavController().navigate(R.id.action_global_information)
         }
 
         //set the string being displayed by the TextView to the greeting

@@ -20,6 +20,18 @@ class MainActivity : AppCompatActivity(), TripRecord.OnFragmentInteractionListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var firstname : String? = intent.getStringExtra("FirstName")
+        var lastname : String? = intent.getStringExtra("LastName")
+        var type : String? = intent.getStringExtra("Type")
+        var email : String? = intent.getStringExtra("Email")
+
+        if (type == "SignUp") {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_choose_car)
+        }
+        else {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_homeScreen)
+        }
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)

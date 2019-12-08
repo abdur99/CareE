@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homebackperf"
+    android:background="@drawable/choosecarbg"
     tools:context=".HomeScreen">
 
     <ImageView
@@ -23,7 +23,7 @@
         android:fontFamily="@font/adamina"
         android:text="Text View"
         android:textAlignment="center"
-        android:textColor="#2EA512"
+        android:textColor="@android:color/white"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -31,110 +31,110 @@
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="500dp"
         android:text="Your Trips"
         android:textAlignment="center"
-        android:textColor="#34A80F"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/tripinfobutton"
-        android:scaleType="fitXY"
-        android:layout_marginTop="400dp"
-        android:layout_gravity="center_horizontal"
         android:layout_width="105dp"
-        android:layout_height="90dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400dp"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/possibleprevioustrips" />
 
     <TextView
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="500dp"
         android:text="User Info"
         android:textAlignment="center"
-        android:textColor="#34A80F"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/userinfobutton"
-        android:scaleType="fitXY"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="400dp"
-        android:layout_marginLeft="30dp"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/profilehome" />
 
     <TextView
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="280dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="500dp"
         android:text="Information"
         android:textAlignment="center"
-        android:textColor="#34A80F"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/carinfobutton"
-        android:scaleType="fitXY"
-        android:layout_marginTop="400dp"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="280dp"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
+        android:layout_marginTop="400dp"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/infohome" />
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="660dp"
         android:text="Trip Info"
         android:textAlignment="center"
-        android:textColor="#34A80F"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/previoustripsbutton"
-        android:scaleType="fitXY"
-        android:layout_marginTop="560dp"
+        android:layout_width="102dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="230dp"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
+        android:layout_marginTop="560dp"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/tripinfohome" />
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="660dp"
         android:text="Car Info"
         android:textAlignment="center"
-        android:textColor="#34A80F"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/appinfobutton"
-        android:scaleType="fitXY"
-        android:layout_marginTop="560dp"
-        android:layout_marginLeft="100dp"
         android:layout_width="100dp"
-        android:layout_height="90dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="560dp"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/possiblecarinfo" />
 
 </FrameLayout>

@@ -95,6 +95,14 @@ class CreateAccountActivity : AppCompatActivity() {
                     currentUserDb.child("firstName").setValue(firstName)
                     currentUserDb.child("lastName").setValue(lastName)
                     updateUserInfoAndUI()
+
+                    val intent = Intent(this@CreateAccountActivity, MainActivity::class.java);
+                    intent.putExtra("FirstName", firstName)
+                    intent.putExtra("LastName", lastName)
+                    intent.putExtra("Email", email)
+                    intent.putExtra("Type", "SignUp")
+                    startActivity(intent);
+
                 } else {
                     Toast.makeText(
                         this@CreateAccountActivity,
