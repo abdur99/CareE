@@ -31,5 +31,11 @@
         android:name="com.example.care_e.HomeScreen"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
-    </fragment><action android:id="@+id/action_global_navigation_trip_record" app:destination="@id/navigation_trip_record"/><action android:id="@+id/action_global_navigation_car_info" app:destination="@id/navigation_car_info"/><action android:id="@+id/action_global_navigation_previous_trips" app:destination="@id/navigation_previous_trips"/><action android:id="@+id/action_global_homeScreen" app:destination="@id/homeScreen"/>
+    </fragment>
+
+    <action android:id="@+id/action_global_navigation_trip_record" app:destination="@id/navigation_trip_record"/>
+    <action android:id="@+id/action_global_navigation_car_info" app:destination="@id/navigation_car_info"/>
+    <action android:id="@+id/action_global_navigation_previous_trips" app:destination="@id/navigation_previous_trips"/>
+    <action android:id="@+id/action_global_homeScreen" app:destination="@id/homeScreen"/>
+
 </navigation>

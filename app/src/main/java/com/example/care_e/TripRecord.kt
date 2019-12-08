@@ -1,23 +1,31 @@
 package com.example.care_e
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
-
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-
+import com.google.android.gms.location.LocationListener
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -25,25 +33,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
-import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_trip_record.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import kotlin.system.exitProcess
-import android.location.Address
-import android.location.Geocoder
-import android.os.Build
-import android.widget.Button
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import android.widget.EditText
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.location.LocationListener
-import com.google.android.gms.location.LocationRequest
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -53,6 +44,16 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, LocationListener,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+   //////////////////////
+    //DataVisualization
+
+    private var mParam1: Bundle? = null
+
+    private var mListener: OnFragmentInteractionListener? = null
+
+
+
+   //////////////////////
     lateinit var CarEViewModel : ViewModel
 
     internal lateinit var mLastLocation: Location
@@ -78,8 +79,6 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             Toast.makeText(activity, "You have already picked a destination", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
 
     private lateinit var topText: TextView
@@ -145,6 +144,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         savedInstanceState: Bundle?
     ): View? {
 
+
         CarEViewModel = activity?.run{
             ViewModelProviders.of(this).get(ViewModel::class.java)
         }?: throw Exception("Activity Invalid")
@@ -159,7 +159,20 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         SearchButton = tripview.findViewById(R.id.searchbtn)
 
         topText = tripview.findViewById(R.id.distance)
+        //////////////////////////////
+        //Data View
 
+        val gasCar = Car(mParam1!!.getString("make")!!,
+            mParam1!!.getString("model")!!,
+            mParam1!!.getInt("year"),
+            mParam1!!.getInt("mpg"))
+        val eCar = ElectricCar(mParam1!!.getString("eMake")!!,
+            mParam1!!.getString("eModel")!!,
+            mParam1!!.getInt("eYear"),
+            mParam1!!.getInt("empg"),
+            mParam1!!.getInt("price"))
+
+        //////////////////////////////
 
         return tripview
     }
@@ -384,6 +397,55 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     override fun onResume(){
         super.onResume()
         //gpsManager.register()
+    }
+
+    //////////////////////////////////////////////////////////////
+    //Data Visualization
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            mListener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mListener = null
+    }
+
+    interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
+    }
+
+    companion object {
+        //private GoogleMap mMap;
+
+        // TODO: Rename parameter arguments, choose names that match
+        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+        private val ARG_PARAM1 = "param1"
+        private val ARG_PARAM2 = "param2"
+
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment Trip.
+         */
+        // TODO: Rename and change types and number of parameters
+        fun newInstance(param1: String, param2: String): TripRecord {
+            val fragment = TripRecord()
+            val args = Bundle()
+            args.putString(ARG_PARAM1, param1)
+            args.putString(ARG_PARAM2, param2)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
 }

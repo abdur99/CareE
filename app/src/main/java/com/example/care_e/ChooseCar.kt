@@ -7,11 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
 import java.util.*
 
@@ -35,6 +33,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
     ): View? {
 
         super.onCreateView(inflater, container, savedInstanceState)
+
 
         var choosecarfrag = inflater.inflate(R.layout.fragment_choose_car, container, false)
 
@@ -111,7 +110,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
             carBundle.putInt("mpg", theOne.mpg)
 
             Log.e("carmake", theOne.make!!)
-            val goToMain = Intent(mContext, MainActivity::class.java)
+            val goToMain = Intent(mContext, TripRecord::class.java)
 
             goToMain.putExtra("Cars", carBundle)
             startActivity(goToMain)
@@ -121,6 +120,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         return choosecarfrag
     }
 
+
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
@@ -129,11 +129,16 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         val models: MutableSet<String>
         val years: MutableSet<String>
 
+        Toast.makeText(activity, "TestLMAO", Toast.LENGTH_SHORT).show()
+
+
         when (parent.id) {
             R.id.MakeSpinner -> {
 
                 val make = makeAdapter.getItem(pos)
-
+                if(make == "Ferrari"){
+                    imageView4.setImageResource(R.drawable.ferrari488)
+                }
                 modelAdapter.clear()
                 yearAdapter.clear()
 
@@ -196,5 +201,6 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         yearAdapter.addAll(years)
 
     }
+
 
 }
