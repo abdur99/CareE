@@ -206,7 +206,12 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
                 val model = makeAdapter.getItem(pos)
 
-
+                if(model == "RLX"){
+                    car_image.setImageResource(R.drawable.acura_rlx)
+                }
+                if(model == "NSX"){
+                    car_image.setImageResource(R.drawable.acura_nsx)
+                }
 
                     // model
                 yearAdapter.clear()
