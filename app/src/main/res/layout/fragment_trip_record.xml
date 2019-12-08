@@ -83,7 +83,6 @@
         android:background="#2A8D05"
         android:fontFamily="@font/adamina"
         android:text="Search"
-        android:onClick="searchLocation"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
@@ -93,21 +92,21 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginTop="90dp"
-        tools:context=".MapsActivity" />
+        android:layout_marginTop="140dp"
+        />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:scaleType="fitXY"
-        android:layout_marginTop="540dp"
+        android:layout_marginTop="590dp"
         android:src="@drawable/bar"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="545dp"
+        android:layout_marginTop="595dp"
         android:fontFamily="@font/nexa_bold"
         android:text="You Travelled"
         android:textAlignment="center"
@@ -119,7 +118,7 @@
         android:id="@+id/distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="650dp"
         android:fontFamily="@font/nexa_bold"
         android:text="0 Meters"
         android:textAlignment="center"

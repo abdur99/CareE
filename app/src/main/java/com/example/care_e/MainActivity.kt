@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -44,6 +46,24 @@ class MainActivity : AppCompatActivity(){
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.navigation_trip_record -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_trip_record)
+            }
+            R.id.navigation_car_info -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_car_info)
+            }
+            R.id.navigation_previous_trips -> findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_previous_trips)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

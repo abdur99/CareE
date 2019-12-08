@@ -10,15 +10,6 @@
         android:name="com.example.care_e.TripRecord"
         android:label="Trip Record"
         tools:layout="@layout/fragment_trip_record" >
-        <action
-            android:id="@+id/action_navigation_trip_record_to_navigation_car_info"
-            app:destination="@id/navigation_car_info" />
-        <action
-            android:id="@+id/action_navigation_trip_record_to_navigation_previous_trips"
-            app:destination="@id/navigation_previous_trips" />
-        <action
-            android:id="@+id/action_navigation_trip_record_to_homeScreen"
-            app:destination="@id/homeScreen" />
     </fragment>
 
     <fragment
@@ -26,15 +17,6 @@
         android:name="com.example.care_e.CarInfo"
         android:label="Car Info"
         tools:layout="@layout/fragment_car_info" >
-        <action
-            android:id="@+id/action_navigation_car_info_to_navigation_trip_record"
-            app:destination="@id/navigation_trip_record" />
-        <action
-            android:id="@+id/action_navigation_car_info_to_navigation_previous_trips"
-            app:destination="@id/navigation_previous_trips" />
-        <action
-            android:id="@+id/action_navigation_car_info_to_homeScreen"
-            app:destination="@id/homeScreen" />
     </fragment>
 
     <fragment
@@ -42,29 +24,12 @@
         android:name="com.example.care_e.PreviousTrips"
         android:label="Previous Trips"
         tools:layout="@layout/fragment_choose_car" >
-        <action
-            android:id="@+id/action_navigation_previous_trips_to_homeScreen"
-            app:destination="@id/homeScreen" />
-        <action
-            android:id="@+id/action_navigation_previous_trips_to_navigation_car_info"
-            app:destination="@id/navigation_car_info" />
-        <action
-            android:id="@+id/action_navigation_previous_trips_to_navigation_trip_record"
-            app:destination="@id/navigation_trip_record" />
     </fragment>
+
     <fragment
         android:id="@+id/homeScreen"
         android:name="com.example.care_e.HomeScreen"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
-        <action
-            android:id="@+id/action_homeScreen_to_navigation_previous_trips"
-            app:destination="@id/navigation_previous_trips" />
-        <action
-            android:id="@+id/action_homeScreen_to_navigation_car_info"
-            app:destination="@id/navigation_car_info" />
-        <action
-            android:id="@+id/action_homeScreen_to_navigation_trip_record"
-            app:destination="@id/navigation_trip_record" />
-    </fragment>
+    </fragment><action android:id="@+id/action_global_navigation_trip_record" app:destination="@id/navigation_trip_record"/><action android:id="@+id/action_global_navigation_car_info" app:destination="@id/navigation_car_info"/><action android:id="@+id/action_global_navigation_previous_trips" app:destination="@id/navigation_previous_trips"/><action android:id="@+id/action_global_homeScreen" app:destination="@id/homeScreen"/>
 </navigation>
