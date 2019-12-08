@@ -29,6 +29,15 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
     internal lateinit var eMakeAdapter: ArrayAdapter<String>
     internal lateinit var eModelAdapter: ArrayAdapter<String>
     internal lateinit var eYearAdapter: ArrayAdapter<String>
+    var make : String? = ""
+    var model : String? = ""
+    var year : Int? = 0
+    var mpg : Int? = 0
+
+    var firstname : String? = ""
+    var lastname : String? = ""
+    var email : String? = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +45,15 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
     ): View? {
 
         super.onCreateView(inflater, container, savedInstanceState)
+
+        if ((arguments?.getString("make")) != null) { make = arguments?.getString("make").toString() }
+        if ((arguments?.getString("model")) != null) { model = arguments?.getString("model").toString() }
+        if ((arguments?.getInt("year")) != null) { year = arguments?.getInt("year") }
+        if ((arguments?.getInt("mpg")) != null) { mpg = arguments?.getInt("mpg") }
+
+        if ((arguments?.getString("FirstName")) != null) { firstname = arguments?.getString("FirstName").toString() }
+        if ((arguments?.getString("LastName")) != null) { lastname = arguments?.getString("LastName").toString() }
+        if ((arguments?.getString("Email")) != null) { email = arguments?.getString("Email").toString() }
 
         var chooseecarfrag = inflater.inflate(R.layout.fragment_choose_ecar, container, false)
 
@@ -107,6 +125,13 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
             ecarBundle.putInt("eYear", theTwo.year)
             ecarBundle.putInt("empg", theTwo.mpg)
             ecarBundle.putInt("price", theTwo.pricePoint)
+            ecarBundle.putString("Make", make)
+            ecarBundle.putString("Model", model)
+            ecarBundle.putInt("Year", year!!.toInt())
+            ecarBundle.putInt("mpg", mpg!!.toInt())
+            ecarBundle.putString("FirstName", firstname)
+            ecarBundle.putString("LastName", lastname)
+            ecarBundle.putString("Email", email)
 
             Log.e("carmake", theTwo.make!!)
             findNavController().navigate(R.id.action_chooseECar_to_homeScreen, ecarBundle)
