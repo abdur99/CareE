@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var dataManager: ViewModel
 
     private val TAG = "LoginActivity"
     //global variables
@@ -93,10 +92,6 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
-                       // val userId = mAuth!!.currentUser!!.uid
-                      //  var user = UserandCarInfo()
-                     //   user.uid = userId
-                        dataManager.name.value = email
                         updateUI()
                         Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_LONG)
                             .show()
