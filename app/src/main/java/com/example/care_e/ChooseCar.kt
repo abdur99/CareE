@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_car_info.*
 import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
 import java.util.*
@@ -207,11 +208,11 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
                 val model = makeAdapter.getItem(pos)
 
-                if(model == "RLX"){
+                if(model == "RLX" && make.equals("Acura")){
                     car_image.setImageResource(R.drawable.acura_rlx)
                 }
-                if(model == "NSX"){
-                    car_image.setImageResource(R.drawable.acura_nsx)
+                if(model == "NSX" && make.equals("Acura")){
+                    car_image.setImageResource(R.drawable.acura_rlx)
                 }
 
                     // model
