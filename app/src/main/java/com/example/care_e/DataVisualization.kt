@@ -106,7 +106,7 @@ class DataVisualization : Fragment() {
             daySavingsView.setText(daySavings)
             yearSavingsView.setText(yearSavings)
             monthSavingsView.setText(monthSavings)
-            mileage.setText(String.format(Locale.getDefault(), "%d", (BigDecimal(CarEViewModel.TripDistanceNumber.value!!*1.6).setScale(3, RoundingMode.HALF_EVEN)).toString()))
+            mileage.setText((BigDecimal(CarEViewModel.TripDistanceNumber.value!!*1.6).setScale(3, RoundingMode.HALF_EVEN)).toString())
 
 
             val carDescripton = "if you drove the " + CarEViewModel.ECar.value!!.model + " instead of the " + CarEViewModel.GasCar.value!!.model
