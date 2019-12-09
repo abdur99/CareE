@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_car_info.*
 import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
@@ -22,6 +24,24 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
     lateinit var mContext: Context
 
     internal var cars = ArrayList<Car>()
+
+    private fun saveFavTeams(favorite_teams: MutableList<String>){
+
+
+        for(team in favorite_teams){
+            //dataManager.favoritesList.value!!.add(team)
+            //dataManager.user.value!!.fav_teams.add(team)
+        }
+
+
+        val uid = FirebaseAuth.getInstance().uid?: CarE.user.value!!.uuid
+        dataManager.user.value!!.uuid = uid
+        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid/Favorite Teams")
+        ref.setValue(dataManager.favoritesList.value!!).addOnSuccessListener {
+            Log.d("Register Activity", "Add fav  teams to database")
+        }
+
+    }
 
 
     internal lateinit var makeAdapter: ArrayAdapter<String>

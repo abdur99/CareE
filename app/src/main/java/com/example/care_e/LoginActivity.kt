@@ -30,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
     private var btnCreateAccount: Button? = null
     private var btnForgotPassword: Button? = null
 
+    lateinit var CarEViewModel : ViewModel
+
     //Firebase references
     private var mAuth: FirebaseAuth? = null
 
@@ -82,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun loginUser() {
+
         email = emailText.text.toString()
         password = passwordText.text.toString()
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
@@ -95,6 +98,12 @@ class LoginActivity : AppCompatActivity() {
                         updateUI()
                         Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_LONG)
                             .show()
+                        val userId = mAuth!!.currentUser!!.uid
+                        var user = UserandCarInfo("")
+                        user.user_uid = userId
+                        CarEViewModel.UserUID.value = userId
+
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.e(TAG, "signInWithEmail:failure", task.exception)

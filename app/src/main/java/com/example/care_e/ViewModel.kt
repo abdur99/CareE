@@ -7,6 +7,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 
 class ViewModel (application: Application) : AndroidViewModel(application) {
+
     var destinationMarker = MutableLiveData<Marker>()
     var currLocation = MutableLiveData<LatLng>()
 
@@ -25,6 +26,8 @@ class ViewModel (application: Application) : AndroidViewModel(application) {
     var EcarMake = MutableLiveData<String>()
     var ECakeYear = MutableLiveData<Int>()
     var ECarMPG = MutableLiveData<Int>()
+
+    var UserUID = MutableLiveData<String>()
 
     var TripDistanceNumber = MutableLiveData<Double>()
     var TripDistanceString = MutableLiveData<String>()
