@@ -59,6 +59,10 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     var lastname: String? = ""
     var email: String? = ""
 
+    var tripdist : Double? = 0.0
+    var tripcost : Double? = 0.0
+    var tripco2 : Double? = 0.0
+
     private lateinit var costText: TextView
     private lateinit var emissionText: TextView
 
@@ -151,7 +155,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
-        var co2 = ((-8.725 * mpg!!) + 749.5)*(dist*1.6)
+        var co2 = ((-8.725 * CarEViewModel.GasCar.value!!.mpg) + 749.5)*(dist*1.6)
+        CarEViewModel.TripEmission.value = co2/1000
         if (co2 > 1000) {
             return (BigDecimal(co2 / 1000).setScale(
                 3,
@@ -240,6 +245,22 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             GetDirection(URL).execute()
         }
         SearchButton.setOnClickListener {
+            var detailbundle = Bundle()
+            detailbundle.putDouble("distance", tripdist!!)
+            detailbundle.putDouble("cost", tripcost!!)
+            detailbundle.putDouble("emissions", tripco2!!)
+            detailbundle.putString("eMake", emake)
+            detailbundle.putString("eModel", emodel)
+            detailbundle.putInt("eYear", eyear!!.toInt())
+            detailbundle.putInt("empg", empg!!.toInt())
+            detailbundle.putInt("price", price!!.toInt())
+            detailbundle.putString("Make", make)
+            detailbundle.putString("Model", model)
+            detailbundle.putInt("Year", year!!.toInt())
+            detailbundle.putInt("mpg", mpg!!.toInt())
+            detailbundle.putString("FirstName", firstname)
+            detailbundle.putString("LastName", lastname)
+            detailbundle.putString("Email", email)
             findNavController().navigate(R.id.action_global_navigation_trip_record)
         }
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
@@ -352,7 +373,6 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             email = arguments?.getString("Email").toString()
         }
 
-
         CarEViewModel = activity?.run {
             ViewModelProviders.of(this).get(ViewModel::class.java)
         } ?: throw Exception("Activity Invalid")
@@ -442,7 +462,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
     }
 
-    public fun decodePolyline(encoded: String): List<LatLng> {
+    fun decodePolyline(encoded: String): List<LatLng> {
 
         val poly = ArrayList<LatLng>()
         var index = 0
@@ -513,7 +533,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
-        var cost = ((dist*1.6) / (mpg!!)) * 2.70
+        var cost = ((dist*1.6) / (CarEViewModel.GasCar.value!!.mpg)) * 2.70
+        CarEViewModel.TripCostNumber.value = cost
         if (cost < 1.0) {
             return (BigDecimal(cost * 100).setScale(0, RoundingMode.HALF_EVEN)).toString() + " cents"
         }
@@ -532,6 +553,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
+        CarEViewModel.TripDistanceNumber.value = dist
         if (dist < 1) {
             return (BigDecimal(dist * 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + " Meters"
         }
