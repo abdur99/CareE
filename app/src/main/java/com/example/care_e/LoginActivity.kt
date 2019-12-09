@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var CarEViewModel : ViewModel
-
+    lateinit var dataManager: ViewModel
 
     private val TAG = "LoginActivity"
     //global variables
