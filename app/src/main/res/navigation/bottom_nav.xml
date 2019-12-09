@@ -14,9 +14,9 @@
 
     <fragment
         android:id="@+id/navigation_car_info"
-        android:name="com.example.care_e.CarInfo"
+        android:name="com.example.care_e.ChooseCar"
         android:label="Car Info"
-        tools:layout="@layout/fragment_car_info" >
+        tools:layout="@layout/fragment_choose_car" >
     </fragment>
 
     <fragment
@@ -74,4 +74,9 @@
             app:destination="@id/homeScreen" />
     </fragment>
     <action android:id="@+id/action_global_chooseECar" app:destination="@id/chooseECar" />
+    <fragment
+        android:id="@+id/dataVisualization"
+        android:name="com.example.care_e.DataVisualization"
+        android:label="fragment_data_visualization"
+        tools:layout="@layout/fragment_data_visualization" /><action android:id="@+id/action_global_dataVisualization" app:destination="@id/dataVisualization"/>
 </navigation>
