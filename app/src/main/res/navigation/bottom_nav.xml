@@ -54,6 +54,18 @@
         <action
             android:id="@+id/action_homeScreen_to_information"
             app:destination="@id/information" />
+        <action
+            android:id="@+id/action_homeScreen_to_dataVisualization"
+            app:destination="@id/dataVisualization" />
+        <action
+            android:id="@+id/action_homeScreen_to_dataVisualization2"
+            app:destination="@id/dataVisualization" />
+        <action
+            android:id="@+id/action_homeScreen_to_dataVisualization3"
+            app:destination="@id/dataVisualization" />
+        <action
+            android:id="@+id/action_homeScreen_to_dataVisualization4"
+            app:destination="@id/dataVisualization" />
     </fragment>
     <action android:id="@+id/action_global_navigation_trip_record" app:destination="@id/navigation_trip_record"/><action android:id="@+id/action_global_navigation_car_info" app:destination="@id/navigation_car_info"/><action android:id="@+id/action_global_navigation_previous_trips" app:destination="@id/navigation_previous_trips"/><action android:id="@+id/action_global_homeScreen" app:destination="@id/homeScreen"/>
     <action android:id="@+id/action_global_navigation_choose_car" app:destination="@id/navigation_choose_car" />
@@ -74,4 +86,10 @@
             app:destination="@id/homeScreen" />
     </fragment>
     <action android:id="@+id/action_global_chooseECar" app:destination="@id/chooseECar" />
+    <fragment
+        android:id="@+id/dataVisualization"
+        android:name="com.example.care_e.DataVisualization"
+        android:label="fragment_data_visualization"
+        tools:layout="@layout/fragment_data_visualization" />
+    <action android:id="@+id/action_global_dataVisualization" app:destination="@id/dataVisualization" />
 </navigation>

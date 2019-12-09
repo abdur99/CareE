@@ -32,10 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="500dp"
-        android:text="Your Trips"
+        android:fontFamily="@font/adamina"
+        android:text="Trip Info"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
         android:layout_marginTop="400dp"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/possibleprevioustrips" />
+        android:src="@drawable/tripinfohome" />
 
     <TextView
         android:layout_width="110dp"
@@ -84,7 +84,7 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/carinfobutton"
+        android:id="@+id/appinfobutton"
         android:layout_width="110dp"
         android:layout_height="100dp"
         android:layout_marginLeft="280dp"
@@ -98,10 +98,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="230dp"
         android:layout_marginTop="660dp"
-        android:text="Trip Info"
+        android:fontFamily="@font/adamina"
+        android:text="Your Trips"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:fontFamily="@font/adamina"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -113,7 +113,7 @@
         android:layout_marginTop="560dp"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/tripinfohome" />
+        android:src="@drawable/possibleprevioustrips" />
 
     <TextView
         android:layout_width="100dp"
@@ -128,7 +128,7 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/appinfobutton"
+        android:id="@+id/carinfobutton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="100dp"

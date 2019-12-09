@@ -134,6 +134,7 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
             ecarBundle.putString("Email", email)
 
             Log.e("carmake", theTwo.make!!)
+            Log.e("carmake", mpg!!.toString())
             findNavController().navigate(R.id.action_chooseECar_to_homeScreen, ecarBundle)
         }
 

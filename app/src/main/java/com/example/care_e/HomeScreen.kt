@@ -1,6 +1,7 @@
 package com.example.care_e
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +86,7 @@ class HomeScreen : Fragment() {
         allinfobundle.putString("Email", email)
 
         homeview.findViewById<ImageButton>(R.id.tripinfobutton).setOnClickListener {
-            findNavController().navigate(R.id.action_global_navigation_trip_record)
+            findNavController().navigate(R.id.action_global_navigation_trip_record, allinfobundle)
         }
 
         homeview.findViewById<ImageButton>(R.id.previoustripsbutton).setOnClickListener {
@@ -94,6 +95,11 @@ class HomeScreen : Fragment() {
 
         homeview.findViewById<ImageButton>(R.id.carinfobutton).setOnClickListener {
             findNavController().navigate(R.id.action_global_navigation_car_info)
+        }
+
+        homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreen_to_dataVisualization, allinfobundle)
+            Log.e("carmake", mpg!!.toString())
         }
 
 //        homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {

@@ -44,25 +44,25 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, LocationListener,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    var make : String? = ""
-    var model : String? = ""
-    var year : Int? = 0
-    var mpg : Int? = 0
+    var make: String? = ""
+    var model: String? = ""
+    var year: Int? = 0
+    var mpg: Int? = 0
     var price: Int? = 0
 
-    var emake : String? = ""
-    var emodel : String? = ""
-    var eyear : Int? = 0
-    var empg : Int? = 0
+    var emake: String? = ""
+    var emodel: String? = ""
+    var eyear: Int? = 0
+    var empg: Int? = 0
 
-    var firstname : String? = ""
-    var lastname : String? = ""
-    var email : String? = ""
+    var firstname: String? = ""
+    var lastname: String? = ""
+    var email: String? = ""
 
     private lateinit var costText: TextView
-    private lateinit var emissionText : TextView
+    private lateinit var emissionText: TextView
 
-   //////////////////////
+    //////////////////////
     //DataVisualization
 
     private var mParam1: Bundle? = null
@@ -70,9 +70,8 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     private var mListener: OnFragmentInteractionListener? = null
 
 
-
-   //////////////////////
-    lateinit var CarEViewModel : ViewModel
+    //////////////////////
+    lateinit var CarEViewModel: ViewModel
 
     internal lateinit var mLastLocation: Location
     internal var mCurrLocationMarker: Marker? = null
@@ -80,32 +79,91 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     internal lateinit var mLocationRequest: LocationRequest
 
 
-    private var count2 : Int = 0
-    private var cost : Double = 0.0
-    private var co2emission : Double = 0.0
-    lateinit var destmarker : Marker
+    private var count2: Int = 0
+    private var co2emission: Double = 0.0
+    lateinit var destmarker: Marker
 
     override fun onMapLongClick(p0: LatLng) {
+        if ((arguments?.getString("Make")) != null) {
+            make = arguments?.getString("Make").toString()
+        }
+        if ((arguments?.getString("Model")) != null) {
+            model = arguments?.getString("Model").toString()
+        }
+        if ((arguments?.getInt("Year")) != null) {
+            year = arguments?.getInt("Year")
+        }
+        if ((arguments?.getInt("mpg")) != null) {
+            mpg = arguments?.getInt("mpg")
+        }
+
+        if ((arguments?.getString("eMake")) != null) {
+            emake = arguments?.getString("eMake").toString()
+        }
+        if ((arguments?.getString("eModel")) != null) {
+            emodel = arguments?.getString("eModel").toString()
+        }
+        if ((arguments?.getInt("eYear")) != null) {
+            eyear = arguments?.getInt("eYear")
+        }
+        if ((arguments?.getInt("empg")) != null) {
+            empg = arguments?.getInt("empg")
+        }
+        if ((arguments?.getInt("price")) != null) {
+            price = arguments?.getInt("price")
+        }
+
+        if ((arguments?.getString("FirstName")) != null) {
+            firstname = arguments?.getString("FirstName").toString()
+        }
+        if ((arguments?.getString("LastName")) != null) {
+            lastname = arguments?.getString("LastName").toString()
+        }
+        if ((arguments?.getString("Email")) != null) {
+            email = arguments?.getString("Email").toString()
+        }
         if (count2 == 0) {
-            CarEViewModel.destinationMarker.value = mMap.addMarker(MarkerOptions().position(p0).title("Destination"))
+            CarEViewModel.destinationMarker.value =
+                mMap.addMarker(MarkerOptions().position(p0).title("Destination"))
             CarEViewModel.destinationMarker.value!!.isDraggable = true
             val URL = getDirectionURL(p0, latLng)
             Log.d("GoogleMap", "URL : $URL")
             GetDirection(URL).execute()
             count2++
             topText.text = (distanceCalculator(latLng, p0).toString())
-            costText.text = (BigDecimal(cost).setScale(3, RoundingMode.HALF_EVEN)).toString()
-            var co2 = ((-8.725*mpg!!)+749.5)
-            if (co2 >1000 ) {
-                emissionText.text = (BigDecimal(co2 / 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + "kilograms"
-            }
-            else {
-                emissionText.text = (BigDecimal(co2 / 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + "grams"
-            }
+            costText.text = costCalculator(latLng, p0)
+            emissionText.text = CO2Emissions(latLng, p0)
+        } else {
+            Toast.makeText(activity, "You have already picked a destination", Toast.LENGTH_SHORT)
+                .show()
         }
-        else {
-            Toast.makeText(activity, "You have already picked a destination", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun CO2Emissions(LatLng1 : LatLng, LatLng2 : LatLng) : String {
+        var startlongitude = LatLng1.longitude
+        var startlatitude = LatLng1.latitude
+        var destlongitude = LatLng2.longitude
+        var destlatitude = LatLng2.latitude
+        var theta = startlongitude - destlongitude;
+        var dist = Math.sin(deg2rad(startlatitude)) * Math.sin(deg2rad(destlatitude)) + Math.cos(
+            deg2rad(startlatitude)
+        ) * Math.cos(deg2rad(destlatitude)) * Math.cos(deg2rad(theta))
+        dist = Math.acos(dist)
+        dist = rad2deg(dist)
+        dist = dist * 60 * 1.1515
+        var co2 = ((-8.725 * mpg!!) + 749.5)*(dist*1.6)
+        if (co2 > 1000) {
+            return (BigDecimal(co2 / 1000).setScale(
+                3,
+                RoundingMode.HALF_EVEN
+            )).toString() + " kilograms"
+        } else {
+            return (BigDecimal(co2).setScale(
+                0,
+                RoundingMode.HALF_EVEN
+            )).toString() + " grams"
         }
+
     }
 
 
@@ -117,6 +175,46 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+
+        if ((arguments?.getString("Make")) != null) {
+            make = arguments?.getString("Make").toString()
+        }
+        if ((arguments?.getString("Model")) != null) {
+            model = arguments?.getString("Model").toString()
+        }
+        if ((arguments?.getInt("Year")) != null) {
+            year = arguments?.getInt("Year")
+        }
+        if ((arguments?.getInt("mpg")) != null) {
+            mpg = arguments?.getInt("mpg")
+        }
+
+        if ((arguments?.getString("eMake")) != null) {
+            emake = arguments?.getString("eMake").toString()
+        }
+        if ((arguments?.getString("eModel")) != null) {
+            emodel = arguments?.getString("eModel").toString()
+        }
+        if ((arguments?.getInt("eYear")) != null) {
+            eyear = arguments?.getInt("eYear")
+        }
+        if ((arguments?.getInt("empg")) != null) {
+            empg = arguments?.getInt("empg")
+        }
+        if ((arguments?.getInt("price")) != null) {
+            price = arguments?.getInt("price")
+        }
+
+        if ((arguments?.getString("FirstName")) != null) {
+            firstname = arguments?.getString("FirstName").toString()
+        }
+        if ((arguments?.getString("LastName")) != null) {
+            lastname = arguments?.getString("LastName").toString()
+        }
+        if ((arguments?.getString("Email")) != null) {
+            email = arguments?.getString("Email").toString()
+        }
+
         mMap = googleMap
         gpsManager = GPSManager(this)
         gpsManager.register()
@@ -132,19 +230,23 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         }
 
         if (CarEViewModel.destinationMarker.value != null) {
-            mMap.addMarker(MarkerOptions().position(CarEViewModel.destinationMarker.value!!.position)).isDraggable = true
-            val URL = getDirectionURL(CarEViewModel.destinationMarker.value!!.position, CarEViewModel.currLocation.value!!)
+            mMap.addMarker(MarkerOptions().position(CarEViewModel.destinationMarker.value!!.position))
+                .isDraggable = true
+            val URL = getDirectionURL(
+                CarEViewModel.destinationMarker.value!!.position,
+                CarEViewModel.currLocation.value!!
+            )
             Log.d("GoogleMap", "URL : $URL")
             GetDirection(URL).execute()
         }
-        SearchButton.setOnClickListener{
+        SearchButton.setOnClickListener {
             findNavController().navigate(R.id.action_global_navigation_trip_record)
         }
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
     }
 
-    fun updateCurrentLocation(location : Location?){
-        if(location != null){
+    fun updateCurrentLocation(location: Location?) {
+        if (location != null) {
             latLng = LatLng(location.latitude, location.longitude)
             CarEViewModel.currLocation.value = latLng
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
@@ -153,11 +255,50 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
 
     private lateinit var latLng: LatLng
     lateinit var mMap: GoogleMap
-    lateinit var gpsManager : GPSManager
-    private lateinit var SearchButton :Button
+    lateinit var gpsManager: GPSManager
+    private lateinit var SearchButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if ((arguments?.getString("Make")) != null) {
+            make = arguments?.getString("Make").toString()
+        }
+        if ((arguments?.getString("Model")) != null) {
+            model = arguments?.getString("Model").toString()
+        }
+        if ((arguments?.getInt("Year")) != null) {
+            year = arguments?.getInt("Year")
+        }
+        if ((arguments?.getInt("mpg")) != null) {
+            mpg = arguments?.getInt("mpg")
+        }
+
+        if ((arguments?.getString("eMake")) != null) {
+            emake = arguments?.getString("eMake").toString()
+        }
+        if ((arguments?.getString("eModel")) != null) {
+            emodel = arguments?.getString("eModel").toString()
+        }
+        if ((arguments?.getInt("eYear")) != null) {
+            eyear = arguments?.getInt("eYear")
+        }
+        if ((arguments?.getInt("empg")) != null) {
+            empg = arguments?.getInt("empg")
+        }
+        if ((arguments?.getInt("price")) != null) {
+            price = arguments?.getInt("price")
+        }
+
+        if ((arguments?.getString("FirstName")) != null) {
+            firstname = arguments?.getString("FirstName").toString()
+        }
+        if ((arguments?.getString("LastName")) != null) {
+            lastname = arguments?.getString("LastName").toString()
+        }
+        if ((arguments?.getString("Email")) != null) {
+            email = arguments?.getString("Email").toString()
+        }
 
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
@@ -172,25 +313,49 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         savedInstanceState: Bundle?
     ): View? {
 
-        if ((arguments?.getString("Make")) != null) { make = arguments?.getString("Make").toString() }
-        if ((arguments?.getString("Model")) != null) { model = arguments?.getString("Model").toString() }
-        if ((arguments?.getInt("Year")) != null) { year = arguments?.getInt("Year") }
-        if ((arguments?.getInt("mpg")) != null) { mpg = arguments?.getInt("mpg") }
+        if ((arguments?.getString("Make")) != null) {
+            make = arguments?.getString("Make").toString()
+        }
+        if ((arguments?.getString("Model")) != null) {
+            model = arguments?.getString("Model").toString()
+        }
+        if ((arguments?.getInt("Year")) != null) {
+            year = arguments?.getInt("Year")
+        }
+        if ((arguments?.getInt("mpg")) != null) {
+            mpg = arguments?.getInt("mpg")
+        }
 
-        if ((arguments?.getString("eMake")) != null) { emake = arguments?.getString("eMake").toString() }
-        if ((arguments?.getString("eModel")) != null) { emodel = arguments?.getString("eModel").toString() }
-        if ((arguments?.getInt("eYear")) != null) { eyear = arguments?.getInt("eYear") }
-        if ((arguments?.getInt("empg")) != null) { empg = arguments?.getInt("empg") }
-        if ((arguments?.getInt("price")) != null) { price = arguments?.getInt("price") }
+        if ((arguments?.getString("eMake")) != null) {
+            emake = arguments?.getString("eMake").toString()
+        }
+        if ((arguments?.getString("eModel")) != null) {
+            emodel = arguments?.getString("eModel").toString()
+        }
+        if ((arguments?.getInt("eYear")) != null) {
+            eyear = arguments?.getInt("eYear")
+        }
+        if ((arguments?.getInt("empg")) != null) {
+            empg = arguments?.getInt("empg")
+        }
+        if ((arguments?.getInt("price")) != null) {
+            price = arguments?.getInt("price")
+        }
 
-        if ((arguments?.getString("FirstName")) != null) { firstname = arguments?.getString("FirstName").toString() }
-        if ((arguments?.getString("LastName")) != null) { lastname = arguments?.getString("LastName").toString() }
-        if ((arguments?.getString("Email")) != null) { email = arguments?.getString("Email").toString() }
+        if ((arguments?.getString("FirstName")) != null) {
+            firstname = arguments?.getString("FirstName").toString()
+        }
+        if ((arguments?.getString("LastName")) != null) {
+            lastname = arguments?.getString("LastName").toString()
+        }
+        if ((arguments?.getString("Email")) != null) {
+            email = arguments?.getString("Email").toString()
+        }
 
 
-        CarEViewModel = activity?.run{
+        CarEViewModel = activity?.run {
             ViewModelProviders.of(this).get(ViewModel::class.java)
-        }?: throw Exception("Activity Invalid")
+        } ?: throw Exception("Activity Invalid")
         // Inflate the layout for this fragment
 
         var tripview = inflater.inflate(R.layout.fragment_trip_record, container, false)
@@ -232,24 +397,25 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
      * installed Google Play services and returned to the app.
      */
 
-    fun getDirectionURL(origin:LatLng,dest:LatLng) : String{
+    fun getDirectionURL(origin: LatLng, dest: LatLng): String {
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}&key=AIzaSyABlLiEzEm8wMshR2JRNKcq995t8NMEiZw"
     }
 
-    private inner class GetDirection(val url : String) : AsyncTask<Void, Void, List<List<LatLng>>>(){
+    private inner class GetDirection(val url: String) :
+        AsyncTask<Void, Void, List<List<LatLng>>>() {
         override fun doInBackground(vararg params: Void?): List<List<LatLng>> {
             val client = OkHttpClient()
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
             val data = response.body()!!.string()
-            Log.d("GoogleMap" , " data : $data")
-            val result =  ArrayList<List<LatLng>>()
-            try{
-                val respObj = Gson().fromJson(data,GoogleMapDTO::class.java)
+            Log.d("GoogleMap", " data : $data")
+            val result = ArrayList<List<LatLng>>()
+            try {
+                val respObj = Gson().fromJson(data, GoogleMapDTO::class.java)
 
-                val path =  ArrayList<LatLng>()
+                val path = ArrayList<LatLng>()
 
-                for (i in 0..(respObj.routes[0].legs[0].steps.size-1)){
+                for (i in 0..(respObj.routes[0].legs[0].steps.size - 1)) {
 //                    val startLatLng = LatLng(respObj.routes[0].legs[0].steps[i].start_location.lat.toDouble()
 //                            ,respObj.routes[0].legs[0].steps[i].start_location.lng.toDouble())
 //                    path.add(startLatLng)
@@ -258,7 +424,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
                     path.addAll(decodePolyline(respObj.routes[0].legs[0].steps[i].polyline.points))
                 }
                 result.add(path)
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
             return result
@@ -266,7 +432,7 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
 
         override fun onPostExecute(result: List<List<LatLng>>) {
             val lineoption = PolylineOptions()
-            for (i in result.indices){
+            for (i in result.indices) {
                 lineoption.addAll(result[i])
                 lineoption.width(10f)
                 lineoption.color(Color.BLUE)
@@ -306,27 +472,54 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
             lng += dlng
 
-            val latLng = LatLng((lat.toDouble() / 1E5),(lng.toDouble() / 1E5))
+            val latLng = LatLng((lat.toDouble() / 1E5), (lng.toDouble() / 1E5))
             poly.add(latLng)
         }
 
         return poly
     }
 
-    override fun onMarkerDragStart(marker : Marker) {
-        topText.text = getString(R.string.on_marker_drag_start)
+    override fun onMarkerDragStart(marker: Marker) {
+        topText.text = (distanceCalculator(latLng, marker.position).toString())
+        costText.text = costCalculator(latLng, marker.position)
+        emissionText.text = CO2Emissions(latLng, marker.position)
     }
 
-    override fun onMarkerDragEnd(marker : Marker) {
+    override fun onMarkerDragEnd(marker: Marker) {
         val URL = getDirectionURL(marker.position, latLng)
         Log.d("GoogleMap", "URL : $URL")
         GetDirection(URL).execute()
         topText.text = distanceCalculator(latLng, marker.position).toString()
+        costText.text = costCalculator(latLng, marker.position)
+        emissionText.text = CO2Emissions(latLng, marker.position)
     }
 
-    override fun onMarkerDrag(marker : Marker) {
+    override fun onMarkerDrag(marker: Marker) {
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15f))
-        topText.text = getString(R.string.on_marker_drag, marker.position.latitude, marker.position.longitude)
+        topText.text = distanceCalculator(latLng, marker.position).toString()
+        costText.text = costCalculator(latLng, marker.position)
+        emissionText.text = CO2Emissions(latLng, marker.position)
+    }
+
+    fun costCalculator(LatLng1: LatLng, LatLng2: LatLng): String {
+        var startlongitude = LatLng1.longitude
+        var startlatitude = LatLng1.latitude
+        var destlongitude = LatLng2.longitude
+        var destlatitude = LatLng2.latitude
+        var theta = startlongitude - destlongitude;
+        var dist = Math.sin(deg2rad(startlatitude)) * Math.sin(deg2rad(destlatitude)) + Math.cos(
+            deg2rad(startlatitude)
+        ) * Math.cos(deg2rad(destlatitude)) * Math.cos(deg2rad(theta))
+        dist = Math.acos(dist)
+        dist = rad2deg(dist)
+        dist = dist * 60 * 1.1515
+        var cost = ((dist*1.6) / (mpg!!)) * 2.70
+        if (cost < 1.0) {
+            return (BigDecimal(cost * 100).setScale(0, RoundingMode.HALF_EVEN)).toString() + " cents"
+        }
+        else {
+            return "$ " + (BigDecimal(cost).setScale(3, RoundingMode.HALF_EVEN)).toString()
+        }
     }
 
     fun distanceCalculator(LatLng1: LatLng, LatLng2: LatLng): String {
@@ -339,7 +532,6 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
-        cost = dist / (mpg!!*1.6)
         if (dist < 1) {
             return (BigDecimal(dist * 1000).setScale(0, RoundingMode.HALF_EVEN)).toString() + " Meters"
         }
