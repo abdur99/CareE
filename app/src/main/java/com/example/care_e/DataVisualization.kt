@@ -6,17 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.util.*
 
 
 class DataVisualization : Fragment() {
-
-    lateinit var CarEViewModel :ViewModel
 
     var make : String? = ""
     var model : String? = ""
@@ -58,10 +52,6 @@ class DataVisualization : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        CarEViewModel = activity?.run {
-            ViewModelProviders.of(this).get(ViewModel::class.java)
-        } ?: throw Exception("Activity Invalid")
-
         var inf = inflater.inflate(R.layout.fragment_data_visualization, container, false)
 
         // Log.e("DATAAAAA", mParam1!!.toString())
@@ -89,32 +79,39 @@ class DataVisualization : Fragment() {
 
         val mileage = inf.findViewById<TextView>(R.id.mileage)
 
+        val distanceBar = inf.findViewById<SeekBar>(R.id.distance_slider)
 
-        if (CarEViewModel.TripDistanceNumber.value!! != 0.0) {
+        distanceBar.max = 100
+        distanceBar.min = 1
+        distanceBar.progress = 65
 
-            val gasPrice =
-                2.8 * (CarEViewModel.TripDistanceNumber.value!! * 1.6) / CarEViewModel.GasCar.value!!.mpg
-            val electricPrice =
-                1.15 * (CarEViewModel.TripDistanceNumber.value!! * 1.6) / CarEViewModel.ECar.value!!.mpg
+        distanceBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
 
-            val daySavings = String.format(Locale.getDefault(), "%.2f", gasPrice - electricPrice)
-            val yearSavings =
-                String.format(Locale.getDefault(), "%.2f", (gasPrice - electricPrice) * 365)
-            val monthSavings =
-                String.format(Locale.getDefault(), "%.2f", (gasPrice - electricPrice) * 365 / 12)
+                val gasPrice = 2.8 * i / mpg!!
+                val electricPrice = 1.15 * i / empg!!
 
-            daySavingsView.setText(daySavings)
-            yearSavingsView.setText(yearSavings)
-            monthSavingsView.setText(monthSavings)
-            mileage.setText(String.format(Locale.getDefault(), "%d", (BigDecimal(CarEViewModel.TripDistanceNumber.value!!*1.6).setScale(3, RoundingMode.HALF_EVEN)).toString()))
+                val daySavings = String.format(Locale.getDefault(), "%.2f", gasPrice - electricPrice)
+                val yearSavings = String.format(Locale.getDefault(), "%.2f", (gasPrice - electricPrice) * 365)
+                val monthSavings = String.format(Locale.getDefault(), "%.2f", (gasPrice - electricPrice) * 365 / 12)
 
+                daySavingsView.setText(daySavings)
+                yearSavingsView.setText(yearSavings)
+                monthSavingsView.setText(monthSavings)
+                mileage.setText(String.format(Locale.getDefault(), "%d", i))
+            }
 
-            val carDescripton = "if you drove the " + CarEViewModel.ECar.value!!.model + " instead of the " + CarEViewModel.GasCar.value!!.model
-            subtitle.text = carDescripton
-        }
-        else {
-            Toast.makeText(activity, "Please make a trip first!", Toast.LENGTH_SHORT).show()
-        }
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+        })
+
+        val carDescripton = "if you drove the " + emodel + " instead of the " + model
+        subtitle.text = carDescripton
 
         return inf
     }

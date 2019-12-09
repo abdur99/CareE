@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -26,8 +25,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
     internal var cars = ArrayList<Car>()
 
-    lateinit var CarEViewModel : ViewModel
-
+   lateinit var model: ViewModel
 
     internal lateinit var makeAdapter: ArrayAdapter<String>
     internal lateinit var modelAdapter: ArrayAdapter<String>
@@ -40,10 +38,6 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        CarEViewModel = activity?.run {
-            ViewModelProviders.of(this).get(ViewModel::class.java)
-        } ?: throw Exception("Activity Invalid")
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -119,8 +113,6 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                 }
             }
             Log.e("VROOOOOM", theOne.toString())
-
-            CarEViewModel.addCarInfo(theOne)
 
             var carBundle = Bundle()
             carBundle.putString("make", theOne.make)
@@ -213,7 +205,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                 if(make == "Honda"){
                     car_image.setImageResource(R.drawable.accord)
                 }
-
+               
                 modelAdapter.clear()
                 yearAdapter.clear()
 
