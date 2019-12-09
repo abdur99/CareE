@@ -1,7 +1,6 @@
 package com.example.care_e
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_car_info.*
 import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
 import java.util.*
@@ -147,6 +147,43 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                 if(make == "Ferrari"){
                     car_image.setImageResource(R.drawable.ferrari488)
                 }
+                if(make == "Acura"){
+                    car_image.setImageResource(R.drawable.acura_rlx)
+                }
+                if(make == "Audi"){
+                    car_image.setImageResource(R.drawable.audir8)
+                }
+                if(make == "Aston Martin"){
+                    car_image.setImageResource(R.drawable.astinmartinvintage)
+                }
+                if(make == "Bentley"){
+                    car_image.setImageResource(R.drawable.bentlybentyga)
+                }
+                if(make == "BMW"){
+                    car_image.setImageResource(R.drawable.bmw750i)
+                }
+                if(make == "Chevy"){
+                    car_image.setImageResource(R.drawable.chovette)
+                }
+                if(make == "Chrysler"){
+                    car_image.setImageResource(R.drawable.pacifica)
+                }
+                if(make == "Dodge"){
+                    car_image.setImageResource(R.drawable.charger)
+                }
+                if(make == "FIAT"){
+                    car_image.setImageResource(R.drawable.i500l)
+                }
+                if(make == "Ford"){
+                    car_image.setImageResource(R.drawable.mustang)
+                }
+                if(make == "GMC"){
+                    car_image.setImageResource(R.drawable.sierra)
+                }
+                if(make == "Honda"){
+                    car_image.setImageResource(R.drawable.accord)
+                }
+               
                 modelAdapter.clear()
                 yearAdapter.clear()
 
@@ -170,6 +207,14 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
                 val model = makeAdapter.getItem(pos)
 
+                if(model == "RLX" && make.equals("Acura")){
+                    car_image.setImageResource(R.drawable.acura_rlx)
+                }
+                if(model == "NSX" && make.equals("Acura")){
+                    car_image.setImageResource(R.drawable.acura_rlx)
+                }
+
+                    // model
                 yearAdapter.clear()
 
                 years = HashSet(0)

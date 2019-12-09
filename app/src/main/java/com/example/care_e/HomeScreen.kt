@@ -94,7 +94,9 @@ class HomeScreen : Fragment() {
         }
 
         homeview.findViewById<ImageButton>(R.id.carinfobutton).setOnClickListener {
-            findNavController().navigate(R.id.action_global_navigation_car_info)
+            findNavController().navigate(R.id.action_global_dataVisualization, allinfobundle)
+
+            Log.e("carmake:", mpg!!.toString())
         }
 
         homeview.findViewById<ImageButton>(R.id.appinfobutton).setOnClickListener {

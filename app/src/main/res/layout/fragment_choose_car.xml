@@ -93,10 +93,11 @@
 
     <ImageView
         android:id="@+id/car_image"
-        android:layout_width="210dp"
-        android:layout_height="137dp"
+        android:layout_width="328dp"
+        android:layout_height="142dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
+        android:background="@null"
         app:srcCompat="@drawable/carelogo" />
 
     <Button
