@@ -175,7 +175,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         val models: MutableSet<String>
         val years: MutableSet<String>
 
-        Toast.makeText(activity, "TestLMAO", Toast.LENGTH_SHORT).show()
+       // Toast.makeText(activity, "TestLMAO", Toast.LENGTH_SHORT).show()
 
 
         when (parent.id) {

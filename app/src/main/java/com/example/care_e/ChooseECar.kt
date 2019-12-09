@@ -1,7 +1,6 @@
 package com.example.care_e
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +13,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_choose_ecar.*
 import java.io.IOException
 import java.util.*
 
@@ -161,6 +161,16 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
 
         when (parent.id) {
             R.id.eMakeSpinner -> {
+
+                if(make == "Tesla"){
+                    electric_car_image.setImageResource(R.drawable.cybertruckelectric)
+                }
+                if(make == "Nissan"){
+                    electric_car_image.setImageResource(R.drawable.nissan_leafelectric)
+                }
+                if(make == "Ford"){
+                    electric_car_image.setImageResource(R.drawable.focuselectric)
+                }
 
                 val eMake = eMakeAdapter.getItem(pos)
 
