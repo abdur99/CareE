@@ -5,10 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import com.google.firebase.database.DatabaseReference
 
 class ViewModel (application: Application) : AndroidViewModel(application) {
+
     var destinationMarker = MutableLiveData<Marker>()
     var currLocation = MutableLiveData<LatLng>()
+
+
 
     var firstname = MutableLiveData<String>()
     var lastname = MutableLiveData<String>()
@@ -26,6 +30,8 @@ class ViewModel (application: Application) : AndroidViewModel(application) {
     var ECakeYear = MutableLiveData<Int>()
     var ECarMPG = MutableLiveData<Int>()
 
+    var UserUID = MutableLiveData<String>()
+
     var TripDistanceNumber = MutableLiveData<Double>()
     var TripDistanceString = MutableLiveData<String>()
 
@@ -39,12 +45,16 @@ class ViewModel (application: Application) : AndroidViewModel(application) {
     var MonthlySaving = MutableLiveData<Double>()
     var YearlySaving = MutableLiveData<Double>()
 
+    var database = MutableLiveData<DatabaseReference>()
+
     init {
         GasCar.value = Car("Blake", "Bike", 1999, 21)
         ECar.value = ElectricCar("Blake", "Bike", 1999, 21, 21000)
         TripDistanceNumber.value = 0.0
         TripCostNumber.value = 0.0
         TripEmission.value = 0.0
+
+        database.value?.addValueEventListener()
 
 
     }

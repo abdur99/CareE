@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_car_info.*
 import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
@@ -24,7 +25,23 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
     internal var cars = ArrayList<Car>()
 
-    lateinit var CarEViewModel : ViewModel
+    private fun saveFavTeams(favorite_teams: MutableList<String>){
+
+
+        for(team in favorite_teams){
+            //dataManager.favoritesList.value!!.add(team)
+            //dataManager.user.value!!.fav_teams.add(team)
+        }
+
+
+        val uid = FirebaseAuth.getInstance().uid?: CarE.user.value!!.uuid
+        dataManager.user.value!!.uuid = uid
+        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid/Favorite Teams")
+        ref.setValue(dataManager.favoritesList.value!!).addOnSuccessListener {
+            Log.d("Register Activity", "Add fav  teams to database")
+        }
+
+    }
 
 
     internal lateinit var makeAdapter: ArrayAdapter<String>
@@ -38,10 +55,6 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        CarEViewModel = activity?.run {
-            ViewModelProviders.of(this).get(ViewModel::class.java)
-        } ?: throw Exception("Activity Invalid")
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -117,8 +130,6 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                 }
             }
             Log.e("VROOOOOM", theOne.toString())
-
-            CarEViewModel.addCarInfo(theOne)
 
             var carBundle = Bundle()
             carBundle.putString("make", theOne.make)

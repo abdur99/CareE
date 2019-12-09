@@ -120,4 +120,3 @@ class DataVisualization : Fragment() {
     }
 
 }
-
