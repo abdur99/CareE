@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import java.io.IOException
 import java.util.*
@@ -20,6 +21,8 @@ import java.util.*
 class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
 
     private var ebtnSubmit: Button? = null
+
+    lateinit var CarEViewModel: ViewModel
 
     lateinit var mContext: Context
 
@@ -43,6 +46,10 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        CarEViewModel = activity?.run {
+            ViewModelProviders.of(this).get(ViewModel::class.java)
+        } ?: throw Exception("Activity Invalid")
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -117,6 +124,8 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
                 }
             }
             Log.e("VROOOOOM", theTwo.toString())
+
+            CarEViewModel.ECar.value = theTwo
 
             val ecarBundle = Bundle()
 

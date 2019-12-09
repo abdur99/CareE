@@ -7,4 +7,5 @@ import com.google.android.gms.maps.model.Marker
 
 class CarTripsViewModel (application: Application) : AndroidViewModel(application) {
     var destinationMarker = MutableLiveData<Marker>()
+
 }
