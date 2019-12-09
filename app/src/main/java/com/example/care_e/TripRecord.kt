@@ -261,7 +261,10 @@ class TripRecord : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListen
             detailbundle.putString("FirstName", firstname)
             detailbundle.putString("LastName", lastname)
             detailbundle.putString("Email", email)
-            findNavController().navigate(R.id.action_global_navigation_trip_record)
+
+            CarEViewModel.saveTrip()
+
+            findNavController().navigate(R.id.action_navigation_trip_record_to_dataVisualization)
         }
         //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f))
     }

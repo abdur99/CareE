@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import java.io.IOException
 import java.util.*
@@ -38,13 +39,20 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
     var lastname : String? = ""
     var email : String? = ""
 
+    lateinit var CarEViewModel: ViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        super.onCreateView(inflater, container, savedInstanceState)
+        CarEViewModel = activity?.run {
+            ViewModelProviders.of(this).get(ViewModel::class.java)
+        } ?: throw Exception("Activity Invalid")
+
+        super.onCreateView(inflater, container,
+            savedInstanceState)
 
         if ((arguments?.getString("make")) != null) { make = arguments?.getString("make").toString() }
         if ((arguments?.getString("model")) != null) { model = arguments?.getString("model").toString() }
@@ -118,6 +126,7 @@ class ChooseECar : Fragment() , AdapterView.OnItemSelectedListener {
             }
             Log.e("VROOOOOM", theTwo.toString())
 
+            CarEViewModel.ECar.value = theTwo
             val ecarBundle = Bundle()
 
             ecarBundle.putString("eMake", theTwo.make)

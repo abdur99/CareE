@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_car_info.*
 import kotlinx.android.synthetic.main.fragment_choose_car.*
 import java.io.IOException
 import java.util.*
+import androidx.lifecycle.ViewModelProviders
 
 
 class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
@@ -23,25 +24,30 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
 
     lateinit var mContext: Context
 
+    lateinit var CarEViewModel : ViewModel
+
     internal var cars = ArrayList<Car>()
 
-    private fun saveFavTeams(favorite_teams: MutableList<String>){
+    var name : String = ""
 
+//    private fun saveFavTeams(favorite_teams: MutableList<String>){
+//
+//
+//        for(team in favorite_teams){
+//            //dataManager.favoritesList.value!!.add(team)
+//            //dataManager.user.value!!.fav_teams.add(team)
+//        }
+//
+//        val user = firebase.auth().currentuser
+//
+//        val uid = FirebaseAuth.getInstance().uid?: CarEViewModel.UserUID.value!!
+//        CarEViewModel.UserUID.value = uid
+//        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid/Favorite Teams")
+//        ref.setValue(CarEViewModel.favoritesList.value!!).addOnSuccessListener {
+//            Log.d("Register Activity", "Add fav  teams to database")
+//        }
+//
 
-        for(team in favorite_teams){
-            //dataManager.favoritesList.value!!.add(team)
-            //dataManager.user.value!!.fav_teams.add(team)
-        }
-
-
-        val uid = FirebaseAuth.getInstance().uid?: CarE.user.value!!.uuid
-        dataManager.user.value!!.uuid = uid
-        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid/Favorite Teams")
-        ref.setValue(dataManager.favoritesList.value!!).addOnSuccessListener {
-            Log.d("Register Activity", "Add fav  teams to database")
-        }
-
-    }
 
 
     internal lateinit var makeAdapter: ArrayAdapter<String>
@@ -55,6 +61,10 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        CarEViewModel = activity?.run {
+            ViewModelProviders.of(this).get(ViewModel::class.java)
+        } ?: throw Exception("Activity Invalid")
 
         super.onCreateView(inflater, container, savedInstanceState)
 
@@ -129,6 +139,7 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
                     theOne = car
                 }
             }
+            CarEViewModel.addCarInfo(theOne)
             Log.e("VROOOOOM", theOne.toString())
 
             var carBundle = Bundle()
@@ -141,6 +152,13 @@ class ChooseCar : Fragment() , AdapterView.OnItemSelectedListener {
             carBundle.putString("Email", email)
 
             Log.e("carmake", theOne.make!!)
+            val user = FirebaseAuth.getInstance().currentUser
+            user?.let {
+                name = user.uid
+            }
+            CarEViewModel.UserUID.value = name
+            CarEViewModel.saveCar(theOne)
+            Log.e("username:", name)
             findNavController().navigate(R.id.action_navigation_choose_car_to_chooseECar, carBundle)
         }
 

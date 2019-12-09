@@ -35,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
     //Firebase references
     private var mAuth: FirebaseAuth? = null
 
+    var name : String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +81,9 @@ class LoginActivity : AppCompatActivity() {
                     )
                 )
             }
-        btn_login.setOnClickListener { loginUser() }
+        btn_login.setOnClickListener {
+            loginUser()
+        }
     }
 
 
@@ -98,10 +102,11 @@ class LoginActivity : AppCompatActivity() {
                         updateUI()
                         Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_LONG)
                             .show()
-                        val userId = mAuth!!.currentUser!!.uid
-                        var user = UserandCarInfo("")
-                        user.user_uid = userId
-                        CarEViewModel.UserUID.value = userId
+                        val user = FirebaseAuth.getInstance().currentUser
+                        user?.let {
+                            name = user.uid
+                        }
+                        CarEViewModel.UserUID.value = name
 
 
                     } else {

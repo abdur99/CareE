@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav"
-    app:startDestination="@+id/navigation_trip_record">
+    app:startDestination="@+id/chooseECar">
 
     <fragment
         android:id="@+id/navigation_trip_record"
         android:name="com.example.care_e.TripRecord"
         android:label="Trip Record"
         tools:layout="@layout/fragment_trip_record" >
+        <action
+            android:id="@+id/action_navigation_trip_record_to_dataVisualization"
+            app:destination="@id/dataVisualization" />
     </fragment>
 
     <fragment
@@ -40,7 +43,7 @@
     <fragment
         android:id="@+id/homeScreen"
         android:name="com.example.care_e.HomeScreen"
-        android:label="fragment_home_screen"
+        android:label="Home"
         tools:layout="@layout/fragment_home_screen" >
         <action
             android:id="@+id/action_homeScreen_to_navigation_previous_trips"
@@ -76,28 +79,31 @@
     <fragment
         android:id="@+id/information"
         android:name="com.example.care_e.Information"
-        android:label="fragment_information"
+        android:label="Information"
         tools:layout="@layout/fragment_information" />
     <action android:id="@+id/action_global_information" app:destination="@id/information" />
     <fragment
         android:id="@+id/chooseECar"
         android:name="com.example.care_e.ChooseECar"
-        android:label="fragment_choose_ecar"
+        android:label="Choose Electric Car"
         tools:layout="@layout/fragment_choose_ecar" >
         <action
             android:id="@+id/action_chooseECar_to_homeScreen"
             app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_chooseECar_to_navigation_trip_record"
+            app:destination="@id/navigation_trip_record" />
     </fragment>
     <action android:id="@+id/action_global_chooseECar" app:destination="@id/chooseECar" />
     <fragment
         android:id="@+id/dataVisualization"
         android:name="com.example.care_e.DataVisualization"
-        android:label="fragment_data_visualization"
+        android:label="Trip Data"
         tools:layout="@layout/fragment_data_visualization" />
     <action android:id="@+id/action_global_dataVisualization" app:destination="@id/dataVisualization" />
     <fragment
         android:id="@+id/aboutus"
         android:name="com.example.care_e.aboutus"
-        android:label="fragment_aboutus"
+        android:label="About Us"
         tools:layout="@layout/fragment_aboutus" />
 </navigation>

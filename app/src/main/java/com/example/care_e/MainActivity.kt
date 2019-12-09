@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), TripRecord.OnFragmentInteractionListen
             findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_choose_car, infobundle)
         }
         else {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_homeScreen, infobundle)
+            findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_chooseECar, infobundle)
         }
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -50,24 +50,6 @@ class MainActivity : AppCompatActivity(), TripRecord.OnFragmentInteractionListen
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
-            R.id.navigation_trip_record -> {
-                findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_trip_record)
-            }
-            R.id.navigation_car_info -> {
-                findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_car_info)
-            }
-            R.id.navigation_previous_trips -> findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_navigation_previous_trips)
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 
